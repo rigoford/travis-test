@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - cat /etc/default/docker
+  - sudo cat /etc/default/docker
 #  - DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock"
   - docker -H tcp://127.0.0.1:2375 version
   - docker pull alpine
