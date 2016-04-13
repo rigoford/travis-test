@@ -1,0 +1,20 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+before_install:
+  - cat /etc/default/docker
+#  - DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock"
+  - docker -H tcp://127.0.0.1:2375 version
+  - docker pull alpine
+  - docker run --detach --name test alpine tail -f /dev/null
+  - docker ps -a
+
+script:
+
+after_script:
+  - docker stop test
+  - docker rm test
